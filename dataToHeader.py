@@ -20,7 +20,7 @@ if os.path.splitext(input)[1] != ".data":
     errorOut("Error", 'Incorrect file format (expected ".data", got "{}").'.format(
         os.path.splitext(input)[1]), "Image is not file format, program terminated.")
 
-def bytes_to_c_arr(data):
+def bytesToC(data):
     return [format(b, '#04x') for b in data]
 
 with open(input, mode='rb') as file:
@@ -48,7 +48,7 @@ while i <= len(removeFFArr) - 8:
 finalArr = bytearray(finalArr)
 
 finalWrite = ("#include <stdint.h>\n#include <avr/pgmspace.h>\n\nconst uint8_t PAYLOAD[4800] PROGMEM = {{{}}};".format(
-    ", ".join(bytes_to_c_arr(finalArr))))
+    ", ".join(bytesToC(finalArr))))
 
 
 f = open(output, "w")
