@@ -176,9 +176,9 @@ void printLeftToRight(const uint8_t *passedReadAddress) {
       localOffset++;
       if (!anyRemaining(passedReadAddress, localOffset, 'L') && (localOffset < 35)) {
           if (localOffset <= 19) {
+            returnLeft((localOffset)*returnTimeMultiplier);
 
             // DEBUG PRINT STATEMENTS (TO BE REMOVED)
-            returnLeft((localOffset)*returnTimeMultiplier);
             Serial.print("Returned: L, Delay: ");
             Serial.print((localOffset)*returnTimeMultiplier);
             Serial.print("\n");
@@ -192,7 +192,7 @@ void printLeftToRight(const uint8_t *passedReadAddress) {
             Serial.print("Returned: R, Delay: ");
             Serial.print((localOffset)*returnTimeMultiplier);
             Serial.print("\n");
-            
+
             swap(&cursorOnSide);
             return;
           }
