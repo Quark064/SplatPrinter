@@ -9,7 +9,7 @@ const int D_PIN = 5;
 const int buttonTimeDown = 45;
 const int delayAfter = 50;
 const int blockOffset = 40;
-const int returnTimeMultiplier = 170;
+const int returnTimeMultiplier = 300;
 
 char cursorOnSide = 'L';
 
@@ -64,6 +64,7 @@ void returnLeft(int delayTime) {
 
 void printBlackLine(char direction) {
   digitalWrite(A_PIN, HIGH);
+  delay(45);
 
   if (direction == 'L') {
     digitalWrite(R_PIN, HIGH);
@@ -145,11 +146,11 @@ void printRightToLeft(const uint8_t *passedReadAddress) {
             return;
           }
           else {
-            returnLeft((localOffset*-1)*returnTimeMultiplier);
+            returnLeft((localOffset + blockOffset)*returnTimeMultiplier*-1);
 
             // DEBUG PRINT STATEMENTS (TO BE REMOVED)
             Serial.print("Returned: L, Delay: ");
-            Serial.print((localOffset*-1)*returnTimeMultiplier);
+            Serial.print((localOffset + blockOffset)*returnTimeMultiplier*-1);
             Serial.print("\n");
 
             swap(&cursorOnSide);
@@ -186,11 +187,11 @@ void printLeftToRight(const uint8_t *passedReadAddress) {
             return;
           }
           else {
-            returnRight((localOffset)*returnTimeMultiplier); //TIMING IS WRONG!! FIX ME
+            returnRight((blockOffset - localOffset)*returnTimeMultiplier);
 
             // DEBUG PRINT STATEMENTS (TO BE REMOVED)
             Serial.print("Returned: R, Delay: ");
-            Serial.print((localOffset)*returnTimeMultiplier);
+            Serial.print((blockOffset - localOffset)*returnTimeMultiplier);
             Serial.print("\n");
 
             swap(&cursorOnSide);
