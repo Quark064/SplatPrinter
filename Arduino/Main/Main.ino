@@ -231,15 +231,21 @@ void doStuff(const uint8_t *currentReadAddress) {
     for (i = 0; i < 120; i ++) {
       if (checkIfLineClear(currentReadAddress + countingOffset) == 1) {
         goDown();
+
+        // DEBUG PRINT STATEMENTS (TO BE REMOVED)
         Serial.print("White line detected, skipping row ");
         Serial.print(i+1);
+
         Serial.print("\n");
       }
       else if (checkIfLineClear(currentReadAddress + countingOffset) == 2) {
+
+        // DEBUG PRINT STATEMENTS (TO BE REMOVED)
         Serial.print("Black line detected, printing row ");
         Serial.print(i+1);
         Serial.print(" from ");
         Serial.print(cursorOnSide);
+
         printBlackLine(cursorOnSide);
         goDown();
       }
