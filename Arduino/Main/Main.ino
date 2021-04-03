@@ -236,8 +236,8 @@ void doStuff(const uint8_t *currentReadAddress) {
         // DEBUG PRINT STATEMENTS (TO BE REMOVED)
         Serial.print("White line detected, skipping row ");
         Serial.print(i+1);
-
         Serial.print("\n");
+        
       }
       else if (checkIfLineClear(currentReadAddress + countingOffset) == 2) {
 
@@ -246,6 +246,7 @@ void doStuff(const uint8_t *currentReadAddress) {
         Serial.print(i+1);
         Serial.print(" from ");
         Serial.print(cursorOnSide);
+        Serial.print("\n");
 
         printBlackLine(cursorOnSide);
         goDown();
