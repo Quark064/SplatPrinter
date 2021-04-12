@@ -137,21 +137,24 @@ void printRightToLeft(const uint8_t *passedReadAddress) {
         localOffset--;
         if (!anyRemaining(passedReadAddress, localOffset, 'R')) {
           if (localOffset >= -19) {
-            returnRight((localOffset*-1)*returnTimeMultiplier);
-
+            
             // DEBUG PRINT STATEMENTS (TO BE REMOVED)
-            Serial.print("Returned: R, Delay: ");
+            Serial.print("(1) Returned: R, Delay: ");
             Serial.print((localOffset*-1)*returnTimeMultiplier);
             Serial.print("\n");
+            
+            returnRight((localOffset*-1)*returnTimeMultiplier);
+
             return;
           }
           else {
-            returnLeft((localOffset + blockOffset)*returnTimeMultiplier*-1);
-
+            
             // DEBUG PRINT STATEMENTS (TO BE REMOVED)
-            Serial.print("Returned: L, Delay: ");
-            Serial.print((localOffset + blockOffset)*returnTimeMultiplier*-1);
+            Serial.print("(2) Returned: L, Delay: ");
+            Serial.print((localOffset + blockOffset)*returnTimeMultiplier);
             Serial.print("\n");
+            
+            returnLeft((localOffset + blockOffset)*returnTimeMultiplier);
 
             swap(&cursorOnSide);
             return;
@@ -177,23 +180,23 @@ void printLeftToRight(const uint8_t *passedReadAddress) {
       localOffset++;
       if (!anyRemaining(passedReadAddress, localOffset, 'L') && (localOffset < 35)) {
           if (localOffset <= 19) {
-            returnLeft((localOffset)*returnTimeMultiplier);
-
-            // DEBUG PRINT STATEMENTS (TO BE REMOVED)
-            Serial.print("Returned: L, Delay: ");
+            
+             // DEBUG PRINT STATEMENTS (TO BE REMOVED)
+            Serial.print("(3) Returned: L, Delay: ");
             Serial.print((localOffset)*returnTimeMultiplier);
             Serial.print("\n");
-
+            
+            returnLeft((localOffset)*returnTimeMultiplier);
             return;
           }
           else {
-            returnRight((blockOffset - localOffset)*returnTimeMultiplier);
-
+           
             // DEBUG PRINT STATEMENTS (TO BE REMOVED)
-            Serial.print("Returned: R, Delay: ");
+            Serial.print("(4) Returned: R, Delay: ");
             Serial.print((blockOffset - localOffset)*returnTimeMultiplier);
             Serial.print("\n");
-
+            
+            returnRight((blockOffset - localOffset)*returnTimeMultiplier);
             swap(&cursorOnSide);
             return;
           }
