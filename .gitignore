@@ -1,3 +1,4 @@
 Payload.h
 *.data
 .gitignore
+.vscode
